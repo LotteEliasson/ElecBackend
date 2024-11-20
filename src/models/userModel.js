@@ -5,3 +5,7 @@ const fetchAllUsers = async () => {
   const [results] = await db.promise().query(query);
   return results;
 };
+
+module.exports = {
+  fetchAllUsers,
+}

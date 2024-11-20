@@ -1,9 +1,9 @@
-const exprees = require ('express');
+const express = require ('express');
 
 const { getAllUsers } = require('../controllers/userController');
 
 //Define routes for specific HTTP-request base on the URL from the frontend
-const router = exprees.Router();
+const router = express.Router();
 
 router.get('/users', getAllUsers);
 

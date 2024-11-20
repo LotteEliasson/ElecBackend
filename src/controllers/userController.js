@@ -12,3 +12,7 @@ const getAllUsers = async (req, res) => {
     res.json(500).json({ error: 'Database query error'});
   }
 }
+
+module.exports = {
+  getAllUsers,
+}
