@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 
 const userRoutes = require('./src/routes/userRoutes.js')
+const shipRoutes = require('./src/routes/shipRoutes.js')
+const ownerRoutes = require('./src/routes/ownerRoutes.js')
 
 const app = express();
 
@@ -11,6 +13,8 @@ app.use(express.json()) //For JSON body parsing
 
 //Handle incoming HTTP-req from frontend/clients, sent it to relevant routes based on the URL.
 app.use('/api', userRoutes);
+app.use('/api', shipRoutes);
+app.use('/api', ownerRoutes);
 
 app.get('/', (req, res) =>{
   res.send('Nice try');
