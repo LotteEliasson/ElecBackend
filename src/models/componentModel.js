@@ -78,9 +78,24 @@ const createComponent = async (componentData) => {
   }
 };
 
+const getComponentById = async (componentId) => {
+  const query = `SELECT * FROM components WHERE component_id = ?`;
+  const [result] = await db.query(query, [componentId])
+  return result;
+}
+
+const getComponentsJunctionBox = async (JunctionBoxId) => {
+  const query = `SELECT * FROM components WHERE junction_box_id = ?`;
+  const [results] = await db.query(query, [JunctionBoxId]);
+  return results;
+
+}
+
 module.exports = {
   fetchAllComponents,
   createComponent,
   deleteComponent,
   updateComponent,
+  getComponentById,
+  getComponentsJunctionBox,
 };

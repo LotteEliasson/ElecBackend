@@ -145,6 +145,22 @@ const getManualById = async (req, res) => {
   }
 };
 
+const getManualIdByComponentId = async (req, res) => {
+  const componentId = req.params.id;
+  try {
+    const manualId = await manualModel.getMaunalIdByComponentId(componentId);
+
+    if (!manualId) {
+      return res.status(404).json({ message: 'Manual id not found.' });
+    }
+    
+    res.json(manualId);
+  } catch (error) {
+    console.error('Error fetching manual id:', error.message);
+    res.status(500).json({ message: 'An unexpected server error occurred while fetching the manual id.' });
+  }
+};
+
 
 // Download a manual's PDF file
 const downloadManualFile = async (req, res) => {
@@ -166,11 +182,32 @@ const downloadManualFile = async (req, res) => {
   }
 };
 
+const downloadManualFileJunctionBox = async (req, res) => {
+  const junctionBoxId = req.params.id;
+
+  try {
+    const manual = await manualModel.getManualByJunctionBoxId(junctionBoxId);
+
+    if (!manual || !manual.file_data) {
+      return res.status(404).json({ message: 'File not found.' });
+    }
+
+    res.setHeader('Content-Disposition', `attachment; filename="${manual.file_name}"`);
+    res.setHeader('Content-Type', 'application/pdf');
+    res.send(Buffer.from(manual.file_data)); // Send binary data as response
+  } catch (error) {
+    console.error('Error fetching file:', error.message);
+    res.status(500).json({ message: 'An error occurred while fetching the file.' });
+  }
+};
+
 module.exports = {
   getAllManuals,
   createManual,
   updateManual,
   deleteManual,
   getManualById,
-  downloadManualFile, // Add this function to exports
+  downloadManualFile,
+  downloadManualFileJunctionBox,
+  getManualIdByComponentId,
 };

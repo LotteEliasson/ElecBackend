@@ -73,6 +73,18 @@ const fetchManualById = async (manualId) => {
   return results.length ? results[0] : null;
 };
 
+const getManualByJunctionBoxId = async (junctionBoxId) => {
+  const query = `
+    SELECT m.manual_id, m.manual_name, m.version, m.manual_component, m.manual_junction_box, m.ships,
+           mpf.file_name, mpf.file_data
+    FROM manuals m
+    LEFT JOIN manual_pdf_files mpf ON m.manual_id = mpf.manual_id
+    WHERE m.manual_junction_box = ?
+  `;
+  const [results] = await db.query(query, [junctionBoxId]);
+  return results.length ? results[0] : null;
+};
+
 // Delete a manual and its associated PDF file
 const deleteManual = async (manualId) => {
   const query = 'DELETE FROM manuals WHERE manual_id = ?';
@@ -135,10 +147,20 @@ const deleteManual = async (manualId) => {
     }
   };
 
+  const getMaunalIdByComponentId = async (componentId) => {
+    const query = `
+    SELECT manual_id FROM manuals WHERE manual_component = ?
+  `;
+  const [results] = await db.query(query, [componentId]);
+  return results.length ? results[0] : null;
+  }
+
 module.exports = {
   fetchAllManuals,
   createManual,
   updateManual,
   deleteManual,
   fetchManualById,
+  getManualByJunctionBoxId,
+  getMaunalIdByComponentId,
 };

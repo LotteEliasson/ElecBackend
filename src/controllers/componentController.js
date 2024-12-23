@@ -93,9 +93,62 @@ const deleteComponent = async (req, res) => {
   }
 };
 
+const getComponentById = async (req, res) => {
+  try {
+    const componentId = req.params.id;
+    if(!componentId) {
+      return res.status(400).json({ eroor: "Invallid component id"});
+    }
+
+    const specificComponent = await componentModel.getComponentById(componentId);
+
+    if(Array.isArray(specificComponent)) {
+      if(specificComponent.length === 0) {
+        return res.status(400).json({ error: "Component not found" });
+      }
+      //return first element
+      return res.json(specificComponent[0]);
+    } else if (!specificComponent) {
+      return res.status(404).json({ error: "Component not found" });
+    }
+
+    res.json(specificComponent);
+  } catch (error) {
+    console.error("Error fetching component", error);
+    res.status(500).json({ error: "Database query error" });
+  }
+}
+
+
+// gets components based on junction_box_id
+const getComponentsByJunctionBoxId = async (req, res) => {
+  try {
+    const junctionBoxId = req.params.id; // gets junctionBoxId from URL parametre
+
+  
+    if (!junctionBoxId) {
+      return res.status(400).json({ error: 'Invalid junctionBoxId' });
+    }
+
+    const components = await componentModel.getComponentsJunctionBox(junctionBoxId);
+    
+    if (components.length === 0) {
+      return res.status(404).json({ message: 'No components found for the given junctionBoxId' });
+    }
+
+    res.status(200).json(components); // components sent to client
+  } catch (error) {
+    console.error('Error fetching components:', error);
+    res.status(500).json({ error: 'Internal server error' }); 
+  }
+};
+
+
 module.exports = {
   getAllComponents,
   createComponent,
   updateComponent,
   deleteComponent,
+  getComponentById,
+  getComponentsByJunctionBoxId,
 };

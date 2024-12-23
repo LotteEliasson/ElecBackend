@@ -5,21 +5,24 @@ const {
   updateManual,
   deleteManual,
   getManualById,
-  downloadManualFile
+  downloadManualFile,
+  downloadManualFileJunctionBox,
+  getManualIdByComponentId
 } = require('../controllers/manualController');
 const authenticateToken = require('../middlewares/authenticateToken');
-const upload = require('../middlewares/multer-config'); // Til håndtering af filuploads
+const upload = require('../middlewares/multer-config'); //Handle filuploads
 
 // Define routes for manual-related HTTP requests
 const router = express.Router();
 
-router.get('/manuals', getAllManuals); // Fetch all manuals
-router.get('/manuals/:id', getManualById); // Fetch a single manual by ID
-router.post('/manuals', upload.single('file'), createManual); // Create a new manual
-router.put('/manuals/:id', upload.single('file'), updateManual); // Update a manual
-router.delete('/manuals/:id', authenticateToken, deleteManual); // Delete a manual
-
+router.get('/manuals', getAllManuals);
+router.get('/manuals/:id', getManualById); 
+router.post('/manuals', upload.single('file'), createManual); 
+router.put('/manuals/:id', upload.single('file'), updateManual);
+router.delete('/manuals/:id', authenticateToken, deleteManual); 
 router.get('/manuals/:id/file', downloadManualFile); // Download a file by manual ID
+router.get('/manuals/jb/:id/file', downloadManualFileJunctionBox); // Download a file by junction box ID
+router.get('/manuals/comp/:id', getManualIdByComponentId);
 
 
 module.exports = router;

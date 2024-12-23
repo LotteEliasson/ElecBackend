@@ -74,9 +74,37 @@ const deleteJunctionBox = async (req, res) => {
   }
 };
 
+const getJuncionBoxByID = async (req, res) => {
+  try {
+    const junctionBoxId = req.params.id;
+    if (!junctionBoxId) {
+      return res.status(400).json({ error: "Invalid junction box ID" });
+    }
+
+    const specificJunctionBox = await junctionBoxModel.getJunctionBoxById(junctionBoxId);
+
+    if (Array.isArray(specificJunctionBox)) {
+      if (specificJunctionBox.length === 0) {
+        return res.status(404).json({ error: "Junction Box not found" });
+      }
+      //Return first element
+      return res.json(specificJunctionBox[0]);
+    } else if (!specificJunctionBox) {
+    
+      return res.status(404).json({ error: "Junction Box not found" });
+    }
+
+    res.json(specificJunctionBox);
+  } catch (error) {
+    console.error("Error fetching Junction Box", error);
+    res.status(500).json({ error: "Database query error" });
+  }
+}
+
 module.exports = {
   getAllJunctionBoxes,
   createJunctionBox,
   updateJunctionBox,
   deleteJunctionBox,
+  getJuncionBoxByID,
 };

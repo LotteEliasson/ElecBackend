@@ -69,9 +69,39 @@ const deleteShip = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+const getshipByID = async (req, res) => {
+  try {
+    const shipId = req.params.id;
+    if (!shipId) {
+      return res.status(400).json({ error: "Invalid ship ID" });
+    }
+
+    const specificShip  = await shipModel.getShipByID(shipId);
+
+    if (Array.isArray(specificShip)) {
+      if (specificShip.length === 0) {
+        return res.status(404).json({ error: "Engine not found" });
+      }
+      //Return first element
+      return res.json(specificShip[0]);
+    } else if (!specificShip) {
+    
+      return res.status(404).json({ error: "Ship not found" });
+    }
+
+    res.json(specificShip);
+  } catch (error) {
+    console.error("Error fetching ship", error);
+    res.status(500).json({ error: "Database query error" });
+  }
+}
+
+
 module.exports = {
   getAllShips,
   createShip,
   updateShip,
-  deleteShip
+  deleteShip,
+  getshipByID
 }

@@ -68,9 +68,18 @@ const createShip= async (shipData) => {
 
 }
 
+const getShipByID = async (shipId) => {
+ 
+  const query = `SELECT * FROM ships WHERE ship_id = ?`;
+  const [results] = await db.query(query, [shipId])
+  return results;
+
+}
+
 module.exports = {
   fetchAllships,
   createShip,
   deleteShip,
   updateShip,
+  getShipByID,
 }

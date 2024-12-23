@@ -63,18 +63,22 @@ const loginUser = async (req, res) => {
 const getUserDetails = async (req, res) => {
   // Extract the user ID from the authendicated user
   const user_id = req.user.user_id;
- try {
+  
+  try {
    const details = await userModel.getUserDetails(user_id);
    if (!details) {
      return res.status(404).json({ error: 'User not found' });
    }
    res.json(details);
    
- } catch (error) {
+  } catch (error) {
    console.error('Error fetching user details:', error);
    res.status(500).json({ error: 'Database query error' });
  }
 }
+
+// src/controllers/userController.js
+
 
 const updateUser = async (req, res) => {
   const userId = req.params.id;

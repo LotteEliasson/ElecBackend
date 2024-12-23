@@ -10,6 +10,56 @@ const getAllEngines = async (req, res) => {
   }
 };
 
+const getEngineByID = async (req, res) => {
+  try {
+    const engineId = req.params.id;
+    if (!engineId) {
+      return res.status(400).json({ error: "Invalid engine ID" });
+    }
+
+    const specificEngine  = await engineModel.getEngineByID(engineId);
+
+    if (Array.isArray(specificEngine)) {
+      if (specificEngine.length === 0) {
+        return res.status(404).json({ error: "Engine not found" });
+      }
+      //Return first element
+      return res.json(specificEngine[0]);
+    } else if (!specificEngine) {
+    
+      return res.status(404).json({ error: "Engine not found" });
+    }
+
+    res.json(specificEngine);
+  } catch (error) {
+    console.error("Error fetching engine", error);
+    res.status(500).json({ error: "Database query error" });
+  }
+}
+
+
+const getEngineByNo = async (req, res) => {
+  try {
+    const engineNo = req.params.engine_no;
+
+    if (!engineNo) {
+      return res.status(400).json({ error: "Engine number is required" });
+    }
+
+    const specificEngine = await engineModel.getEngineByNo(engineNo);
+
+    if (!specificEngine) {
+      return res.status(404).json({ error: "Engine not found" });
+    }
+
+    res.json(specificEngine);
+  } catch (error) {
+    console.error("Error fetching engine by number:", error);
+    res.status(500).json({ error: "Database query error" });
+  }
+};
+
+
 const createEngine = async (req, res) => {
   try {
     const { engine_type, engine_cylinders, engine_no, internal_engine_id, ship_id } = req.body;
@@ -54,6 +104,8 @@ const deleteEngine = async (req, res) => {
 
 module.exports = {
   getAllEngines,
+  getEngineByID,
+  getEngineByNo,
   createEngine,
   updateEngine,
   deleteEngine,

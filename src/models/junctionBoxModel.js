@@ -75,9 +75,16 @@ const createJunctionBox = async (junctionBoxData) => {
   }
 };
 
+const getJunctionBoxById = async (junctionBoxId) => {
+  const query = `SELECT * FROM junction_box WHERE junction_box_id = ?`;
+  const [results] = await db.query(query, [junctionBoxId])
+  return results;
+};
+
 module.exports = {
   fetchAllJunctionBoxes,
   createJunctionBox,
   deleteJunctionBox,
   updateJunctionBox,
+  getJunctionBoxById
 };

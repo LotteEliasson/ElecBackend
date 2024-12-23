@@ -4,12 +4,15 @@ const {
   getAllComponents, 
   createComponent, 
   updateComponent, 
-  deleteComponent 
+  deleteComponent,
+  getComponentById,
+  getComponentsByJunctionBoxId
 } = require('../controllers/componentController');
 
-router.get('/components', getAllComponents); // Fetch all components
-router.post('/components', createComponent); // Create a new component
-router.put('/components/:id', updateComponent); // Update an existing component
-router.delete('/components/:id', deleteComponent); // Delete a component
-
+router.get('/components', getAllComponents);
+router.post('/components', createComponent); 
+router.put('/components/:id', updateComponent); 
+router.delete('/components/:id', deleteComponent);
+router.get('/components/:id', getComponentById); 
+router.get('/components/jb/:id', getComponentsByJunctionBoxId )
 module.exports = router;
