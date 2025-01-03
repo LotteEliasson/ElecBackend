@@ -13,7 +13,23 @@ const orderRoutes = require('./src/routes/orderRoutes.js')
 
 const app = express();
 
-app.use(cors('*')); // Enable CORS for all routes
+//app.use(cors('*')); // Enable CORS for all routes
+
+// Specifik tilladelse for din frontend
+const allowedOrigins = ['http://localhost:5173']; // Tilføj flere domæner, hvis nødvendigt
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Hvis du bruger cookies eller sessioner
+};
+
+app.use(cors(corsOptions)); // Brug de opdaterede CORS-indstillinger
 app.use(express.json()) //For JSON body parsing
 
 //Handle incoming HTTP-req from frontend/clients, sent it to relevant routes based on the URL.
