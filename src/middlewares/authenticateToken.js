@@ -2,6 +2,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+//Token defined userController-userLogin as userDetails
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     if (!authHeader) {
