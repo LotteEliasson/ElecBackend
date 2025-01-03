@@ -10,7 +10,8 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,     
   waitForConnections: true,
   connectionLimit: 10,               // Max connections
-  queueLimit: 0                       // No que limits
+  queueLimit: 0,
+  ssl: { rejectUnauthorized: true } // added ssl for Azure                    // No que limits
 });
 
 // Export pool with promise API
