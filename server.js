@@ -17,23 +17,16 @@ const app = express();
 
 
 // Specifik tilladelse for din frontend
-const allowedOrigins = ['http://localhost:5173', 'https://electricparts-h8a0e7cec9d8fjb3.northeurope-01.azurewebsites.net'];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Tilladte HTTP-metoder
-  allowedHeaders: ['Content-Type', 'Authorization'], // Tilladte headers
-  credentials: true, // Hvis du bruger cookies eller sessioner
-};
-
-app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://electricparts-h8a0e7cec9d8fjb3.northeurope-01.azurewebsites.net'
+  ],
+  credentials: true
+}));
 
 app.use(express.json()) //For JSON body parsing
 
@@ -56,5 +49,6 @@ app.get('/', (req, res) =>{
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log('server is running on port 5000')
+  console.log('server is running on port 5000');
+  console.log('CORS setup:', corsOptions);
 })
