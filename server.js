@@ -15,17 +15,24 @@ const app = express();
 
 //app.use(cors('*')); // Enable CORS for all routes
 
-// Specifik tilladelse for din frontend
-const allowedOrigins = ['http://localhost:5173']; // Tilføj flere domæner, hvis nødvendigt
 
-// Konfigurer CORS til at tillade alle domæner og metoder
+// Specifik tilladelse for din frontend
+const allowedOrigins = ['http://localhost:5173', 'https://electricparts-h8a0e7cec9d8fjb3.northeurope-01.azurewebsites.net'];
+
 const corsOptions = {
-  origin: '*', // Tillader alle domæner
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Tillader disse HTTP-metoder
-  allowedHeaders: ['Content-Type', 'Authorization'], // Tillader nødvendige headers
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Tilladte HTTP-metoder
+  allowedHeaders: ['Content-Type', 'Authorization'], // Tilladte headers
+  credentials: true, // Hvis du bruger cookies eller sessioner
 };
 
-app.use(cors(corsOptions)); // Aktivér CORS med de specificerede indstillinger
+app.use(cors(corsOptions));
 app.use(express.json()) //For JSON body parsing
 
 //Handle incoming HTTP-req from frontend/clients, sent it to relevant routes based on the URL.
