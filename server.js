@@ -33,6 +33,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(express.json()) //For JSON body parsing
 
 //Handle incoming HTTP-req from frontend/clients, sent it to relevant routes based on the URL.
