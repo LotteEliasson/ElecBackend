@@ -21,7 +21,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://electricparts-h8a0e7cec9d8fjb3.northeurope-01.azurewebsites.net'
+    'https://ambitious-island-0fc3ebe03.4.azurestaticapps.net'
   ],
   credentials: true
 }));
