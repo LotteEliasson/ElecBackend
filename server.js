@@ -18,18 +18,14 @@ const app = express();
 // Specifik tilladelse for din frontend
 const allowedOrigins = ['http://localhost:5173']; // Tilføj flere domæner, hvis nødvendigt
 
+// Konfigurer CORS til at tillade alle domæner og metoder
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Hvis du bruger cookies eller sessioner
+  origin: '*', // Tillader alle domæner
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Tillader disse HTTP-metoder
+  allowedHeaders: ['Content-Type', 'Authorization'], // Tillader nødvendige headers
 };
 
-app.use(cors(corsOptions)); // Brug de opdaterede CORS-indstillinger
+app.use(cors(corsOptions)); // Aktivér CORS med de specificerede indstillinger
 app.use(express.json()) //For JSON body parsing
 
 //Handle incoming HTTP-req from frontend/clients, sent it to relevant routes based on the URL.
