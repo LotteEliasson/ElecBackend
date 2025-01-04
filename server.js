@@ -18,7 +18,6 @@ const app = express();
 
 // Specifik tilladelse for din frontend
 
-app.options('*', cors(corsOptions));
 
 app.use(cors({
   origin: [
@@ -27,6 +26,7 @@ app.use(cors({
   ],
   credentials: true
 }));
+
 
 app.use(express.json()) //For JSON body parsing
 
@@ -50,5 +50,5 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log('server is running on port 5000');
-  console.log('CORS setup:', corsOptions);
+  
 })

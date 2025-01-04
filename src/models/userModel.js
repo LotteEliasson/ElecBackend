@@ -1,5 +1,5 @@
 const db = require('../configs/db');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const fetchAllUsers = async () => {
   const query = 'SELECT user_id, username, email, userrole, company FROM users';
