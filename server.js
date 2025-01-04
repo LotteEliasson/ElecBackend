@@ -21,7 +21,8 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://ambitious-island-0fc3ebe03.4.azurestaticapps.net'
+    'https://ambitious-island-0fc3ebe03.4.azurestaticapps.net',
+    'http://87.72.50.114:19000' //Expo Go via wifi
   ],
   credentials: true
 }));
