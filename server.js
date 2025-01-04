@@ -13,18 +13,18 @@ const orderRoutes = require('./src/routes/orderRoutes.js')
 
 const app = express();
 
-app.use(cors('*')); // Enable CORS for all routes
+//app.use(cors('*')); // Enable CORS for all routes
 
 
 
 
-// app.use(cors({
-//   origin: [
-//     'http://localhost:5173',
-//     'https://electricparts-h8a0e7cec9d8fjb3.northeurope-01.azurewebsites.net'
-//   ],
-//   credentials: true
-// }));
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://electricparts-h8a0e7cec9d8fjb3.northeurope-01.azurewebsites.net'
+  ],
+  credentials: true
+}));
 
 
 app.use(express.json()) //For JSON body parsing
