@@ -47,9 +47,9 @@ QR-KODE der skal anvendes til at scanne i mobilapplikationen:
 
 
 ## GitHub Links til lokal kørsel af projektet
-Backend: https://github.com/LotteEliasson/ElecBackend.git
-frontend: https://github.com/LotteEliasson/ElecFrontend.git
-mobil: https://github.com/LotteEliasson/mobileElectricalParts.git
+- **Backend:** https://github.com/LotteEliasson/ElecBackend.git
+- **frontend:** https://github.com/LotteEliasson/ElecFrontend.git
+- **mobil:** https://github.com/LotteEliasson/mobileElectricalParts.git
 
 ## DATABASE
 ### kør MySQL-Script i workbench:
