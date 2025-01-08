@@ -49,7 +49,7 @@ QR-KODE der skal anvendes til at scanne i mobilapplikationen:
 
 ## DATABASE
 ### kør MySQL-Script i workbench:
-xxxxxxxxxxxx HUSK DETTE LINK TIL????
+**https://github.com/LotteEliasson/ElecBackend/blob/main/create_database.sql**
 
 ## BACKEND
 ### Naviger til backend-mappen og installer afhængigheder:  
