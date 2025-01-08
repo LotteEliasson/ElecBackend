@@ -34,6 +34,7 @@ Samtidig er det muligt at:
   - Components
   - Own Work
   - Logout
+
 **NB Picture Documentation virker ikke efter hensigten, anvend Cabinet Details for at teste QR-kode etc.**
 
 QR-KODE der skal anvendes til at scanne i mobilapplikationen:
