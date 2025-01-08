@@ -12,7 +12,7 @@ const {
 const authenticateToken = require('../middlewares/authenticateToken');
 const upload = require('../middlewares/multer-config'); //Handle filuploads
 
-// Define routes for manual-related HTTP requests
+// Define routes for manual HTTP requests
 const router = express.Router();
 
 router.get('/manuals', getAllManuals);

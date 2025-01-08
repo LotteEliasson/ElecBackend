@@ -10,13 +10,11 @@ const componentRoutes = require('./src/routes/componentRoutes.js')
 const junctionBoxRoutes = require('./src/routes/junctionBoxRoutes.js')
 const manualRoutes = require('./src/routes/manualRoutes.js')
 const orderRoutes = require('./src/routes/orderRoutes.js')
+const pictureRoutes = require('./src/routes/pictureRoutes.js')
 
 const app = express();
 
 //app.use(cors('*')); // Enable CORS for all routes
-
-
-
 
 app.use(cors({
   origin: [
@@ -39,6 +37,7 @@ app.use('/api', componentRoutes);
 app.use('/api', junctionBoxRoutes);
 app.use('/api', manualRoutes);
 app.use('/api', orderRoutes);
+app.use('/api', pictureRoutes);
 
 
 
@@ -49,6 +48,6 @@ app.get('/', (req, res) =>{
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log('server is running on port ${PORT}');
+  console.log(`server is running on port ${PORT}`);
   
 })
