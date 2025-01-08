@@ -40,7 +40,7 @@ QR-KODE der skal anvendes til at scanne i mobilapplikationen:
 ![image](https://github.com/user-attachments/assets/fc3b4b7f-48ac-41e7-ac88-fb02ae3c8832)
 
 ## Links til deployede versioner
-- **Webapplikation**: https://ambitious-island-0fc3ebe03.4.azurestaticapps.net  
+- **Webapplikation**: https://happy-mushroom-0ed273703.4.azurestaticapps.net
 - **Mobilapplikation (kun Android)**: https://play.google.com/apps/internaltest/4701738040560284851  
 
 
@@ -53,7 +53,7 @@ xxxxxxxxxxxx HUSK DETTE LINK TIL????
 
 ## BACKEND
 ### Naviger til backend-mappen og installer afhængigheder:  
-cd backend  # Erstat med det faktiske mappenavn  
+cd ElecBackend  
 ### Installer dependencies:
 npm install
 
@@ -74,7 +74,7 @@ node server.js
 
 ## WEBAPPLIKATIONEN
 ### Naviger til webapplikation-mappen og installer afhængigheder:  
-cd webapplikation  # Erstat med det faktiske mappenavn
+cd ElecFrontend
 ### Installer dependencies:
 npm install
 
