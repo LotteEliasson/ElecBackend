@@ -89,7 +89,7 @@ Password: password123
 
 ## MOBILAPPLIKATIONEN
 ### Naviger til mobilapplikation-mappen og installer afhængigheder:  
-cd mobilapplikation  # Erstat med det faktiske mappenavn  
+cd mobileElectricalParts/MobileFrontend  
 ### Installer dependencies:
 npm install  
 
