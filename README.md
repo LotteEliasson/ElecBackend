@@ -107,13 +107,10 @@ https://github.com/LotteEliasson/mobileElectricalParts/blob/main/MobileFrontend/
 ### Start mobilapplikationen:  
 npx expo  
 
-### 
+### Anvend Expo Go for at se mobilapplikationen
 
 ### Login-oplysninger
 **Mobilapplikation**:  
 User: alice@example.com  
 Password: password123  
 Engine no: KAA008026 
-
-
- 
